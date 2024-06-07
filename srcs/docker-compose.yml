@@ -1,0 +1,18 @@
+services:
+  mariadb:
+    image: mariadb
+    networks:
+      - network
+  nginx:
+    image:
+      nginx
+    networks:
+      - network
+  wordpress:
+    image:
+      wordpress
+    networks:
+      - network
+
+networks:
+  network:
