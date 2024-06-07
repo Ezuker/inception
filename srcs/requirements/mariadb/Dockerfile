@@ -1,3 +1,4 @@
 FROM alpine:3.19
 
-RUN echo mariadb
+EXPOSE 3306
+CMD ["echo", "mariadb"]

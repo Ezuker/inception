@@ -1,4 +1,4 @@
 FROM alpine:3.19
 
-RUN echo wordpress
-RUN apk search -v 
+EXPOSE 9000
+CMD ["apk", "search", "-v"]

@@ -1,18 +1,22 @@
 services:
   mariadb:
-    image: mariadb
+    build: ./requirements/mariadb
     networks:
       - network
+    ports:
+      - "3306:3306"
   nginx:
-    image:
-      nginx
+    build: ./requirements/nginx
     networks:
       - network
+    ports:
+      - "443:443"
   wordpress:
-    image:
-      wordpress
+    build: ./requirements/wordpress
     networks:
       - network
+    ports:
+      - "9000:9000"
 
 networks:
   network:
