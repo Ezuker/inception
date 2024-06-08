@@ -9,3 +9,6 @@ stop:
 fclean:
 	rm -rf /home/bcarolle/data/mariadb
 	rm -rf /home/bcarolle/data/wordpress
+	make stop
+
+.PHONY: all stop fclean
