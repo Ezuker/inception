@@ -1,6 +1,7 @@
 all:
 	mkdir -p /home/bcarolle/data/mariadb	
 	mkdir -p /home/bcarolle/data/wordpress
+	rc-service docker start
 	docker-compose -f ./srcs/docker-compose.yml up
 
 stop:
