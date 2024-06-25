@@ -1,9 +1,7 @@
-FROM alpine:3.19
+FROM debian:bullseye
 
-RUN apk update && apk upgrade && apk add openrc
-RUN apk add mariadb mariadb-client
-RUN mkdir -p /run/openrc/
-RUN touch /run/openrc/softlevel
-RUN /etc/init.d/mariadb setup
-RUN rc-update add mariadb default
+RUN apt update -y && apt upgrade -y
+RUN apt-get install mariadb-server -y
+COPY conf/50-server.cnf	/etc/mysql/mariadb.conf.d/50-server.cnf
+CMD ["bash","./tools/mysql.sh"]
 EXPOSE 330
