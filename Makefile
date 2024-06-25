@@ -11,5 +11,6 @@ fclean:
 	rm -rf /home/bcarolle/data/mariadb
 	rm -rf /home/bcarolle/data/wordpress
 	make stop
+	$(shell docker rmi -f $$(docker images -a -q))
 
 .PHONY: all stop fclean
