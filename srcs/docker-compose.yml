@@ -5,18 +5,24 @@ services:
       - network
     ports:
       - "3306:3306"
+    env_file: ".env"
   nginx:
     build: ./requirements/nginx
+    depends_on:
+      - wordpress
     networks:
       - network
     ports:
       - "443:443"
   wordpress:
     build: ./requirements/wordpress
+    depends_on:
+      - mariadb
     networks:
       - network
     ports:
       - "9000:9000"
+    env_file: ".env"
 
 networks:
   network:

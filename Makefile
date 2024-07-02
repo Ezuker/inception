@@ -2,15 +2,18 @@ all:
 	mkdir -p /home/bcarolle/data/mariadb	
 	mkdir -p /home/bcarolle/data/wordpress
 	rc-service docker start
+	sleep 5
 	docker-compose -f ./srcs/docker-compose.yml up
 
 stop:
 	docker-compose -f ./srcs/docker-compose.yml stop
+	sleep 5
+	$(shell docker rmi -f $$(docker images -a -q))
+	rc-service docker stop
 
 fclean:
 	rm -rf /home/bcarolle/data/mariadb
 	rm -rf /home/bcarolle/data/wordpress
 	make stop
-	$(shell docker rmi -f $$(docker images -a -q))
 
 .PHONY: all stop fclean
