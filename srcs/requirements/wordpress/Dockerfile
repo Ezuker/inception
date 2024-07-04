@@ -12,4 +12,4 @@ RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 RUN cd /var/www
 COPY tools/wpconfigcreate.sh /var/www
-#RUN bash /var/www/wpconfigcreate.sh
+CMD ["bash", "/var/www/wpconfigcreate.sh"]

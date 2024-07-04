@@ -9,6 +9,8 @@ stop:
 	docker-compose -f ./srcs/docker-compose.yml stop
 	@sleep 5
 	docker system prune --all --force
+	docker volume prune --force
+	docker network prune --force
 	rc-service docker stop
 
 
