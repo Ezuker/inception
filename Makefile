@@ -1,22 +1,20 @@
 all:
-	mkdir -p /home/bcarolle/data/mariadb	
-	mkdir -p /home/bcarolle/data/wordpress
-	rc-service docker start
+	sudo mkdir -p /home/bcarolle/data/mariadb	
+	sudo mkdir -p /home/bcarolle/data/wordpress
 	@sleep 5
-	docker-compose -f ./srcs/docker-compose.yml up
+	sudo docker-compose -f ./srcs/docker-compose.yml up -d
 
 stop:
-	docker-compose -f ./srcs/docker-compose.yml stop
+	sudo docker-compose -f ./srcs/docker-compose.yml stop
 	@sleep 5
-	docker system prune --all --force
-	docker volume prune --force
-	docker network prune --force
-	rc-service docker stop
-
+	sudo docker system prune --all --force
+	# sudo docker volume prune --force
+	docker volume ls -qf dangling=true | xargs -r docker volume rm
+	sudo docker network prune --force
 
 fclean:
-	rm -rf /home/bcarolle/data/mariadb
-	rm -rf /home/bcarolle/data/wordpress
+	sudo rm -rf /home/bcarolle/data/mariadb
+	sudo rm -rf /home/bcarolle/data/wordpress
 	make stop
 
 .PHONY: all stop fclean
