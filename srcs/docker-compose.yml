@@ -34,6 +34,7 @@ services:
       wordpress
     depends_on:
       - mariadb
+      - redis
     networks:
       - inception
     ports:
@@ -42,6 +43,15 @@ services:
       - .env
     volumes:
       - wp-volume:/var/www/wordpress
+    restart: always
+  redis:
+    build: ./requirements/redis
+    container_name:
+      redis
+    networks:
+      - inception
+    ports:
+      - "6379:6379"
     restart: always
 
 volumes:

@@ -17,4 +17,6 @@ fclean:
 	sudo rm -rf /home/bcarolle/data/wordpress
 	make stop
 
-.PHONY: all stop fclean
+re: fclean all
+
+.PHONY: all stop fclean re

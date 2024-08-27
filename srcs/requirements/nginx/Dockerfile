@@ -11,6 +11,5 @@ RUN chown -R www-data:www-data /var/www/
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY tools/nginxwait.sh /etc/
 RUN chmod 755 /etc/nginxwait.sh
-RUN apt-get install -y iputils-ping
 
 CMD ["bash", "/etc/nginxwait.sh"]

@@ -17,5 +17,4 @@ RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 RUN cd /var/www
 COPY tools/wpconfigcreate.sh /var/www
-RUN apt-get install -y iputils-ping
 CMD ["bash", "/var/www/wpconfigcreate.sh"]
