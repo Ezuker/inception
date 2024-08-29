@@ -61,9 +61,22 @@ services:
       - inception
     ports:
       - "21:21"
-      - "49152-49182:49152-49182"
+      - "57434-57464:57434-57464"
     volumes:
       - wp-volume:/var/www/wordpress
+    env_file:
+      - .env
+    restart: always
+  adminer:
+    build: ./requirements/adminer
+    container_name:
+      adminer
+    networks:
+      - inception
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mariadb
     restart: always
 
 volumes:
