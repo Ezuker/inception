@@ -53,6 +53,18 @@ services:
     ports:
       - "6379:6379"
     restart: always
+  proftpd:
+    build: ./requirements/proftpd
+    container_name:
+      proftpd
+    networks:
+      - inception
+    ports:
+      - "21:21"
+      - "49152-49182:49152-49182"
+    volumes:
+      - wp-volume:/var/www/wordpress
+    restart: always
 
 volumes:
   wp-volume:
