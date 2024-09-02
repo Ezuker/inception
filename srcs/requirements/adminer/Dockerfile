@@ -8,6 +8,9 @@ RUN apt-get install -y systemctl
 RUN echo "Alias /adminer.php /usr/share/adminer/adminer.php" | tee /etc/apache2/conf-available/adminer.conf
 RUN a2enconf adminer
 
+RUN echo "Listen 8080" | tee /etc/apache2/ports.conf
+
+
 # Set ServerName to localhost to suppress the warning
 # RUN echo "Adminer website" | tee /etc/apache2/conf-available/servername.conf
 # RUN a2enconf servername
