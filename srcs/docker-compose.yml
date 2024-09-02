@@ -45,7 +45,7 @@ services:
       - wp-volume:/var/www/wordpress
     restart: always
   redis:
-    build: ./requirements/redis
+    build: ./requirements/bonus/redis
     container_name:
       redis
     networks:
@@ -54,7 +54,7 @@ services:
       - "6379:6379"
     restart: always
   proftpd:
-    build: ./requirements/proftpd
+    build: ./requirements/bonus/proftpd
     container_name:
       proftpd
     networks:
@@ -68,7 +68,7 @@ services:
       - .env
     restart: always
   adminer:
-    build: ./requirements/adminer
+    build: ./requirements/bonus/adminer
     container_name:
       adminer
     networks:
@@ -79,13 +79,26 @@ services:
       - mariadb
     restart: always
   static:
-    build: ./requirements/static
+    build: ./requirements/bonus/static
     container_name:
       static
     networks:
       - inception
     ports:
       - "80:80"
+    restart: always
+  portainer:
+    build: ./requirements/bonus/portainer
+    container_name:
+      portainer
+    networks:
+      - inception
+    ports:
+      - "9443:9443"
+      - "8000:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
     restart: always
 
 volumes:
@@ -100,6 +113,8 @@ volumes:
       o: bind
       type: none
       device: /home/bcarolle/data/mariadb
+  
+  portainer_data:
 
 networks:
     inception:
